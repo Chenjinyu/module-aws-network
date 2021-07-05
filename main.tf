@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 locals {
-  vpc_name     = "${var.env_name} ${var.vpc_name}"
+  vpc_name     = "${local.env_name} ${var.vpc_name}"
   cluster_name = "${var.cluster_name}-${var.env_name}"
 }
 
