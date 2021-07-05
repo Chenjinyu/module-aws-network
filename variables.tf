@@ -1,10 +1,10 @@
 variable "env_name" {
-  type = string
+  type    = string
   default = "staging"
 }
 
 variable "aws_region" {
-  type = string
+  type    = string
   default = "us-east-1"
 }
 

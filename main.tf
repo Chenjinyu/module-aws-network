@@ -3,14 +3,14 @@ provider "aws" {
 }
 
 locals {
-  vpc_name     = "${local.env_name} ${var.vpc_name}"
+  vpc_name     = "${var.env_name} ${var.vpc_name}"
   cluster_name = "${var.cluster_name}-${var.env_name}"
 }
 
 ## AWS VPC definition
 resource "aws_vpc" "main" {
-  cidr_block = var.main_vpc_cidr
-  enable_dns_support = true
+  cidr_block           = var.main_vpc_cidr
+  enable_dns_support   = true
   enable_dns_hostnames = true
 
   tags = {
