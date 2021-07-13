@@ -19,10 +19,12 @@ resource "aws_vpc" "main" {
   }
 }
 
+## Declare the data source
 data "aws_availability_zones" "available" {
   state = "available"
 }
 
+## Create subnet in the first available zones for public-subnet-a
 resource "aws_subnet" "public-subnet-a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.public_subnet_a_cidr
@@ -35,6 +37,7 @@ resource "aws_subnet" "public-subnet-a" {
   }
 }
 
+## Create subnet in the second available zones for public-subnet-b
 resource "aws_subnet" "public-subnet-b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.public_subnet_b_cidr
@@ -47,6 +50,7 @@ resource "aws_subnet" "public-subnet-b" {
   }
 }
 
+## Create subnet in the first available zones for private-subnet-a
 resource "aws_subnet" "private-subnet-a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.private_subnet_a_cidr
@@ -59,6 +63,7 @@ resource "aws_subnet" "private-subnet-a" {
   }
 }
 
+## Create subnet in the second available zones for private-subnet-b
 resource "aws_subnet" "private-subnet-b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.private_subnet_b_cidr
@@ -175,9 +180,9 @@ resource "aws_route_table_association" "private-b-association" {
 # Create a Route 53 zone for DNS support inside the VPC
 resource "aws_route53_zone" "private-zone" {
   # AWS requires a lowercase name. 
-  #name = "lower(${var.env_name}.${var.vpc_name}.com)"
-  name = "${var.env_name}.${var.vpc_name}.com"
-  #name = "testing.com"
+  # name = "lower(${var.env_name}.${var.vpc_name}.com)"
+  # name = "${var.env_name}.${var.vpc_name}.com"
+  name          = "enyclife.com"
   force_destroy = true
 
   vpc {
